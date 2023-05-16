@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -12,6 +12,11 @@
         <module>sherry-common-util</module>
         <module>sherry-model</module>
         <module>sherry-web-admin</module>
+        <module>sherry-dubbodemo-provider</module>
+        <module>sherry-dubbodemo_consumer</module>
+        <module>sherry-dubbodemo_interface</module>
+        <module>sherry-service-api</module>
+        <module>sherry-service</module>
     </modules>
 
     <properties>
@@ -40,6 +45,7 @@
 
     <!-- 依赖管理 -->
     <dependencyManagement>
+
         <dependencies>
             <!--spring-session 同步-->
             <dependency>
@@ -209,7 +215,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

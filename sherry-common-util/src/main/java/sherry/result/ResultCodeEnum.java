@@ -10,7 +10,7 @@ package sherry.result;
  **/
 public enum ResultCodeEnum {
 
-    SUCCESS(200,"成功"),
+    SUCCESS(200, "成功"),
     FAIL(201, "失败"),
     PARAM_ERROR(203, "参数错误"),
     DATA_ERROR(204, "数据异常"),

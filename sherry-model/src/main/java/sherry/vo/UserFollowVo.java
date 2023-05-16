@@ -6,135 +6,135 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class UserFollowVo implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private Long houseId;
-	private Date createTime;
-	private String communityName;
-	private String name;
-	private String buildArea;
-	private BigDecimal totalPrice;
-	private String defaultImageUrl;
-	private Long houseTypeId;
-	private Long floorId;
-	private Long directionId;
+    private static final long serialVersionUID = 1L;
 
-	private String houseTypeName;
-	private String floorName;
-	private String directionName;
+    private Long id;
+    private Long houseId;
+    private Date createTime;
+    private String communityName;
+    private String name;
+    private String buildArea;
+    private BigDecimal totalPrice;
+    private String defaultImageUrl;
+    private Long houseTypeId;
+    private Long floorId;
+    private Long directionId;
 
-	public String getCommunityName() {
-		return communityName;
-	}
+    private String houseTypeName;
+    private String floorName;
+    private String directionName;
 
-	public void setCommunityName(String communityName) {
-		this.communityName = communityName;
-	}
+    public String getCommunityName() {
+        return communityName;
+    }
 
-	public Long getHouseId() {
-		return houseId;
-	}
+    public void setCommunityName(String communityName) {
+        this.communityName = communityName;
+    }
 
-	public void setHouseId(Long houseId) {
-		this.houseId = houseId;
-	}
+    public Long getHouseId() {
+        return houseId;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public void setHouseId(Long houseId) {
+        this.houseId = houseId;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getBuildArea() {
-		return buildArea;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setBuildArea(String buildArea) {
-		this.buildArea = buildArea;
-	}
+    public String getBuildArea() {
+        return buildArea;
+    }
 
-	public BigDecimal getTotalPrice() {
-		return totalPrice;
-	}
+    public void setBuildArea(String buildArea) {
+        this.buildArea = buildArea;
+    }
 
-	public void setTotalPrice(BigDecimal totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
 
-	public Long getHouseTypeId() {
-		return houseTypeId;
-	}
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
-	public void setHouseTypeId(Long houseTypeId) {
-		this.houseTypeId = houseTypeId;
-	}
+    public Long getHouseTypeId() {
+        return houseTypeId;
+    }
 
-	public Long getFloorId() {
-		return floorId;
-	}
+    public void setHouseTypeId(Long houseTypeId) {
+        this.houseTypeId = houseTypeId;
+    }
 
-	public void setFloorId(Long floorId) {
-		this.floorId = floorId;
-	}
+    public Long getFloorId() {
+        return floorId;
+    }
 
-	public Long getDirectionId() {
-		return directionId;
-	}
+    public void setFloorId(Long floorId) {
+        this.floorId = floorId;
+    }
 
-	public void setDirectionId(Long directionId) {
-		this.directionId = directionId;
-	}
+    public Long getDirectionId() {
+        return directionId;
+    }
 
-	public String getDefaultImageUrl() {
-		return defaultImageUrl;
-	}
+    public void setDirectionId(Long directionId) {
+        this.directionId = directionId;
+    }
 
-	public void setDefaultImageUrl(String defaultImageUrl) {
-		this.defaultImageUrl = defaultImageUrl;
-	}
+    public String getDefaultImageUrl() {
+        return defaultImageUrl;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setDefaultImageUrl(String defaultImageUrl) {
+        this.defaultImageUrl = defaultImageUrl;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public String getHouseTypeName() {
-		return houseTypeName;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setHouseTypeName(String houseTypeName) {
-		this.houseTypeName = houseTypeName;
-	}
+    public String getHouseTypeName() {
+        return houseTypeName;
+    }
 
-	public String getFloorName() {
-		return floorName;
-	}
+    public void setHouseTypeName(String houseTypeName) {
+        this.houseTypeName = houseTypeName;
+    }
 
-	public void setFloorName(String floorName) {
-		this.floorName = floorName;
-	}
+    public String getFloorName() {
+        return floorName;
+    }
 
-	public String getDirectionName() {
-		return directionName;
-	}
+    public void setFloorName(String floorName) {
+        this.floorName = floorName;
+    }
 
-	public void setDirectionName(String directionName) {
-		this.directionName = directionName;
-	}
+    public String getDirectionName() {
+        return directionName;
+    }
+
+    public void setDirectionName(String directionName) {
+        this.directionName = directionName;
+    }
 }
 

@@ -13,27 +13,23 @@
     </select>
     <!--主页中的角色列表中添加新的角色-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into acl_role (
-            id ,
-            role_name ,
-            role_code ,
-            description
-        ) values (
-                     #{id} ,
-                     #{roleName} ,
-                     #{roleCode} ,
-                     #{description}
-                 )
+        insert into acl_role (id,
+                              role_name,
+                              role_code,
+                              description)
+        values (#{id},
+                #{roleName},
+                #{roleCode},
+                #{description})
     </insert>
     <!--主页中的角色列表中通过角色ID返回角色信息-->
     <select id="getById" resultType="Role">
         select *
         from acl_role
-        where
-            id = #{id}
+        where id = #{id}
     </select>
     <!--主页中的角色列表中的修改角色-->
-    <update id="update" >
+    <update id="update">
         update acl_role set
         <if test="roleName != null and roleName != ''">
             role_name = #{roleName} ,
@@ -44,18 +40,17 @@
         <if test="description != null and description != ''">
             description = #{description} ,
         </if>
-        update_time =  now()
+        update_time = now()
         where
         id = #{id}
     </update>
 
     <!--逻辑删除，不是真的删除，只是将数据库里面的is_deleted设置为1-->
     <update id="delete">
-        update acl_role set
-                            update_time = now() ,
-                            is_deleted = 1
-        where
-            id = #{id}
+        update acl_role
+        set update_time = now(),
+            is_deleted  = 1
+        where id = #{id}
     </update>
     <select id="findPage" resultType="Role">
         select *
@@ -68,4 +63,5 @@
         </where>
         order by id desc
     </select>
+
 </mapper>
