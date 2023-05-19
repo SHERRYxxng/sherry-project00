@@ -11,12 +11,12 @@
     <modules>
         <module>sherry-common-util</module>
         <module>sherry-model</module>
-        <module>sherry-web-admin</module>
         <module>sherry-dubbodemo-provider</module>
         <module>sherry-dubbodemo_consumer</module>
         <module>sherry-dubbodemo_interface</module>
         <module>sherry-service-api</module>
         <module>sherry-service</module>
+        <module>sherry-web</module>
     </modules>
 
     <properties>

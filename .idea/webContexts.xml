@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/sherry-web-admin/src/main/webapp/WEB-INF/templates/frame/index.html" value="file://$PROJECT_DIR$/sherry-web-admin/src/main/webapp/WEB-INF/templates/frame" />
         <entry key="file://$PROJECT_DIR$/sherry-web-admin/src/main/webapp/WEB-INF/templates/role/create.html" value="file://$PROJECT_DIR$/sherry-web-admin/src/main/webapp/WEB-INF/templates/role" />
+        <entry key="file://$PROJECT_DIR$/sherry-web/sherry-web-admin/src/main/webapp/WEB-INF/templates/frame/index.html" value="file://$PROJECT_DIR$/sherry-web/sherry-web-admin/src/main/webapp/WEB-INF/templates/frame" />
       </map>
     </option>
   </component>
