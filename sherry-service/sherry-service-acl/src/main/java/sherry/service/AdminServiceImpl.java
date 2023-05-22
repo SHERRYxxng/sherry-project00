@@ -8,6 +8,8 @@ import sherry.base.BaseServiceImpl;
 import sherry.dao.AdminDao;
 import sherry.entity.Admin;
 
+import java.util.List;
+
 /**
  * @ClassName:AdminServiceImpl
  * @Description:
@@ -24,5 +26,10 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
     @Override
     protected BaseDao<Admin> getEntityDao() {
         return adminDao;
+    }
+
+    @Override
+    public List<Admin> findAll() {
+        return adminDao.findAll();
     }
 }

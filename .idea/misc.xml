@@ -7,6 +7,7 @@
     <file type="web" url="file://$PROJECT_DIR$/sherry-dubbodemo-provider" />
     <file type="web" url="file://$PROJECT_DIR$/sherry-dubbodemo_consumer" />
     <file type="web" url="file://$PROJECT_DIR$/sherry-service/sherry-service-acl" />
+    <file type="web" url="file://$PROJECT_DIR$/sherry-service/sherry-service-house" />
     <file type="web" url="file://$PROJECT_DIR$/sherry-web" />
   </component>
   <component name="MavenProjectsManager">
@@ -15,6 +16,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/sherry-web/pom.xml" />
         <option value="$PROJECT_DIR$/sherry-service-api/pom.xml" />
+        <option value="$PROJECT_DIR$/sherry-service/sherry-service-house/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

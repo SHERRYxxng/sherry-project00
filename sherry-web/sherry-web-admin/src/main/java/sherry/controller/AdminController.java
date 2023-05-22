@@ -5,16 +5,17 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import sherry.base.BaseController;
 import sherry.entity.Admin;
 import sherry.service.AdminService;
+import sherry.util.QiniuUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @ClassName:AdminController
@@ -35,6 +36,31 @@ public class AdminController extends BaseController {
     private final static String PAGE_SUCCESS = "common/successPage";
     @Reference
     private AdminService adminService;
+    private final static String PAGE_UPLOED_SHOW = "admin/upload";
+
+    @GetMapping("/uploadShow/{id}")
+    public String uploadShow(ModelMap model,@PathVariable Long id) {
+        model.addAttribute("id", id);
+        return PAGE_UPLOED_SHOW;
+    }
+
+    @PostMapping("/upload/{id}")
+    public String upload(@PathVariable Long id, @RequestParam(value = "file") MultipartFile file, HttpServletRequest request) throws IOException {
+        try {
+            String newFileName =  UUID.randomUUID().toString() ;
+            // 上传图片
+            QiniuUtils.upload2Qiniu(file.getBytes(),newFileName);
+            String url= "http://r8khiz1sp.hd-bkt.clouddn.com/"+ newFileName;
+            Admin admin = new Admin();
+            admin.setId(id);
+            admin.setHeadUrl(url);
+            adminService.update(admin);
+            return PAGE_SUCCESS;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     /**
      * 列表

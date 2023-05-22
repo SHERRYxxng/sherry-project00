@@ -5,7 +5,12 @@
 
 <mapper namespace="sherry.dao.AdminDao">
 
-
+    <select id="findAll" resultType="Admin">
+        select *
+        from acl_admin
+        where
+            is_deleted = 0
+    </select>
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into acl_admin (id,
                                username,

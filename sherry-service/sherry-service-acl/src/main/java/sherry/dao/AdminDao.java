@@ -3,6 +3,8 @@ package sherry.dao;
 import sherry.base.BaseDao;
 import sherry.entity.Admin;
 
+import java.util.List;
+
 /**
  * @ClassName:AdminDao
  * @Description:
@@ -12,4 +14,5 @@ import sherry.entity.Admin;
  * @Date: 2023/5/16 21:04
  **/
 public interface AdminDao extends BaseDao<Admin> {
+    List<Admin> findAll();
 }

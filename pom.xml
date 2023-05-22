@@ -17,6 +17,7 @@
         <module>sherry-service-api</module>
         <module>sherry-service</module>
         <module>sherry-web</module>
+        <module>sherry-web/sherry-web-front</module>
     </modules>
 
     <properties>

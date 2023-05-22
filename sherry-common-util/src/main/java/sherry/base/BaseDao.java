@@ -3,6 +3,7 @@ package sherry.base;
 import com.github.pagehelper.Page;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,4 +47,5 @@ public interface BaseDao<T> {
     T getById(Serializable id);
 
     Page<T> findPage(Map<String, Object> filters);
+
 }
