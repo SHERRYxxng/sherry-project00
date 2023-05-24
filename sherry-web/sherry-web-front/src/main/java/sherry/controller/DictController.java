@@ -34,5 +34,10 @@ public class DictController extends BaseController {
         List<Dict> list = dictService.findListByDictCode(dictCode);
         return Result.ok(list);
     }
-
+    //搜索二级联动处理
+    @RequestMapping(value = "findListByParentId/{parentId}")
+    public Result<List<Dict>> findListByParentId(@PathVariable Long parentId) {
+        List<Dict> list = dictService.findListByParentId(parentId);
+        return Result.ok(list);
+    }
 }

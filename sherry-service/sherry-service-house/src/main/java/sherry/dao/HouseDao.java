@@ -1,7 +1,11 @@
 package sherry.dao;
 
+import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Param;
 import sherry.base.BaseDao;
 import sherry.entity.House;
+import sherry.vo.HouseQueryVo;
+import sherry.vo.HouseVo;
 
 /**
  * @Description:
@@ -11,4 +15,5 @@ import sherry.entity.House;
  **/
 public interface HouseDao extends BaseDao<House> {
 
+    Page<HouseVo> findListPage(@Param("vo") HouseQueryVo houseQueryVo);
 }

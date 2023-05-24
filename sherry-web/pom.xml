@@ -16,6 +16,7 @@
 
     <modules>
         <module>sherry-web-admin</module>
+        <module>sherry-web-front</module>
     </modules>
 
     <dependencies>

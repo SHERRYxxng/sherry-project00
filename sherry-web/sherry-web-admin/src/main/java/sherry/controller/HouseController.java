@@ -4,13 +4,13 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import sherry.base.BaseController;
 import sherry.entity.*;
+import sherry.result.Result;
 import sherry.service.*;
+import sherry.vo.HouseQueryVo;
+import sherry.vo.HouseVo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -187,5 +187,14 @@ public class HouseController extends BaseController {
         model.addAttribute("houseImage2List", houseImage2List);
         return PAGE_SHOW;
 
+    }
+
+    @RequestMapping("/list/{pageNum}/{pageSize}")
+    public Result findListPage(@RequestBody HouseQueryVo houseQueryVo ,
+                               @PathVariable("pageNum") Integer pageNum,
+                               @PathVariable("pageSize") Integer pageSize){
+        //调用HouseService中前端展示房源数据的方法
+        PageInfo<HouseVo> pageInfo = houseService.findListPage(pageNum,pageSize,houseQueryVo);
+        return Result.ok(pageInfo);
     }
 }

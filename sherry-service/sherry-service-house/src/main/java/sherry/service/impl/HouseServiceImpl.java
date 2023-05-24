@@ -1,6 +1,9 @@
 package sherry.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import sherry.base.BaseDao;
@@ -10,8 +13,11 @@ import sherry.dao.HouseDao;
 import sherry.entity.House;
 import sherry.service.DictService;
 import sherry.service.HouseService;
+import sherry.vo.HouseQueryVo;
+import sherry.vo.HouseVo;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Description:
@@ -65,5 +71,23 @@ public class HouseServiceImpl extends BaseServiceImpl<House> implements HouseSer
         house.setDecorationName(decorationName);
         house.setHouseUseName(houseUseName);
         return house;
+    }
+    @Override
+    public PageInfo<HouseVo> findListPage(int pageNum, int pageSize, HouseQueryVo houseQueryVo) {
+        PageHelper.startPage(pageNum, pageSize);
+        Page<HouseVo> page = houseDao.findListPage(houseQueryVo);
+        List<HouseVo> list = page.getResult();
+        for(HouseVo houseVo : list) {
+            //户型：
+            String houseTypeName = dictDao.getNameById(houseVo.getHouseTypeId());
+            //楼层
+            String floorName = dictDao.getNameById(houseVo.getFloorId());
+            //朝向：
+            String directionName = dictDao.getNameById(houseVo.getDirectionId());
+            houseVo.setHouseTypeName(houseTypeName);
+            houseVo.setFloorName(floorName);
+            houseVo.setDirectionName(directionName);
+        }
+        return new PageInfo<HouseVo>(page, 10);
     }
 }
