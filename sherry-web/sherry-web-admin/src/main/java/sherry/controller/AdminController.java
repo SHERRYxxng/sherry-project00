@@ -28,7 +28,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping(value="/admin")
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class AdminController extends BaseController {
+public class  AdminController extends BaseController {
     private final static String LIST_ACTION = "redirect:/admin";
     private final static String PAGE_INDEX = "admin/index";
     private final static String PAGE_CREATE = "admin/create";
@@ -50,7 +50,7 @@ public class AdminController extends BaseController {
             String newFileName =  UUID.randomUUID().toString() ;
             // 上传图片
             QiniuUtils.upload2Qiniu(file.getBytes(),newFileName);
-            String url= "http://r8khiz1sp.hd-bkt.clouddn.com/"+ newFileName;
+            String url= "http://rv5kih93z.hn-bkt.clouddn.com//"+ newFileName;
             Admin admin = new Admin();
             admin.setId(id);
             admin.setHeadUrl(url);

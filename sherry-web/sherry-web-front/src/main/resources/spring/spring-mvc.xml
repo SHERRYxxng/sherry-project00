@@ -14,8 +14,14 @@
     <import resource="spring-registry.xml"/>
 
     <!--包扫描-->
-    <context:component-scan base-package="sherry" />
-
+    <context:component-scan base-package="sherry.controller" />
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**/auth/**"/>
+            <bean class="sherry.interceptor.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
     <!-- 没有匹配上的url全部按默认方式（就是直接访问）访问，避免拦截静态资源 -->
     <mvc:default-servlet-handler/>
     <!-- 开启mvc注解-->

@@ -8,6 +8,7 @@
     <file type="web" url="file://$PROJECT_DIR$/sherry-dubbodemo_consumer" />
     <file type="web" url="file://$PROJECT_DIR$/sherry-service/sherry-service-acl" />
     <file type="web" url="file://$PROJECT_DIR$/sherry-service/sherry-service-house" />
+    <file type="web" url="file://$PROJECT_DIR$/sherry-service/sherry-service-user" />
     <file type="web" url="file://$PROJECT_DIR$/sherry-web" />
   </component>
   <component name="MavenProjectsManager">

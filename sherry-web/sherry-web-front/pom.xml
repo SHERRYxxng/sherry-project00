@@ -24,7 +24,7 @@
           </webAppConfig>  
           <httpConnector> 
             <!--端口号，默认 8080-->  
-            <port>8001</port> 
+            <port>8111</port>
           </httpConnector> 
         </configuration> 
       </plugin> 
