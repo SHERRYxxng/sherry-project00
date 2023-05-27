@@ -42,12 +42,26 @@
         <spring.security.version>5.2.7.RELEASE</spring.security.version>
         <thymeleaf-springsecurity5.version>3.0.4.RELEASE</thymeleaf-springsecurity5.version>
         <redis-session.version>1.3.5.RELEASE</redis-session.version>
+<!--        <spring.security.version>5.2.7.RELEASE</spring.security.version>-->
+
     </properties>
 
     <!-- 依赖管理 -->
     <dependencyManagement>
 
         <dependencies>
+<!--            &lt;!&ndash; spring security安全框架 &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.security</groupId>-->
+<!--                <artifactId>spring-security-web</artifactId>-->
+<!--                <version>${spring.security.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.security</groupId>-->
+<!--                <artifactId>spring-security-config</artifactId>-->
+<!--                <version>${spring.security.version}</version>-->
+<!--            </dependency>-->
+
             <!--spring-session 同步-->
             <dependency>
                 <groupId>org.springframework.session</groupId>

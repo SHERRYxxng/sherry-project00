@@ -2,7 +2,6 @@ package sherry.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import sherry.base.BaseController;
 import sherry.entity.Admin;
 import sherry.service.AdminService;
+import sherry.service.RoleService;
 import sherry.util.QiniuUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,20 +26,55 @@ import java.util.UUID;
  * @Date: 2023/5/16 21:05
  **/
 @Controller
-@RequestMapping(value="/admin")
+@RequestMapping(value = "/admin")
 @SuppressWarnings({"unchecked", "rawtypes"})
-public class  AdminController extends BaseController {
+public class AdminController extends BaseController {
+    @Reference
+    private RoleService roleService;
+    private final static String PAGE_ASSGIN_SHOW = "admin/assginShow";
     private final static String LIST_ACTION = "redirect:/admin";
     private final static String PAGE_INDEX = "admin/index";
     private final static String PAGE_CREATE = "admin/create";
     private final static String PAGE_EDIT = "admin/edit";
     private final static String PAGE_SUCCESS = "common/successPage";
+    private final static String PAGE_UPLOED_SHOW = "admin/upload";
     @Reference
     private AdminService adminService;
-    private final static String PAGE_UPLOED_SHOW = "admin/upload";
+
+    /**
+     * @return java.lang.String
+     * @Description 去分配角色的页面
+     * @Date 2023/5/27 10:20
+     * @Param [model, adminId]
+     * @Author SHERRY
+     **/
+    @GetMapping("/assignShow/{adminId}")
+    public String assignShow(ModelMap model, @PathVariable Long adminId) {
+        //将用户的id放到request域中
+        model.addAttribute("adminId", adminId);
+
+        //调用RoleService中根据用户id查询用户角色的方法
+        Map<String, Object> roleMap = roleService.findRoleByAdminId(adminId);
+        model.addAllAttributes(roleMap);
+
+        return PAGE_ASSGIN_SHOW;
+    }
+
+    /**
+     * @return java.lang.String
+     * @Description
+     * @Date 2023/5/27 8:52
+     * @Param [adminId, roleIds]
+     * @Author SHERRY
+     **/
+    @PostMapping("/assignRole")
+    public String assignRole(Long adminId, Long[] roleIds) {
+        roleService.saveUserRoleRealtionShip(adminId, roleIds);
+        return PAGE_SUCCESS;
+    }
 
     @GetMapping("/uploadShow/{id}")
-    public String uploadShow(ModelMap model,@PathVariable Long id) {
+    public String uploadShow(ModelMap model, @PathVariable Long id) {
         model.addAttribute("id", id);
         return PAGE_UPLOED_SHOW;
     }
@@ -47,7 +82,7 @@ public class  AdminController extends BaseController {
     @PostMapping("/upload/{id}")
     public String upload(@PathVariable Long id, @RequestParam(value = "file") MultipartFile file, HttpServletRequest request) throws IOException {
         try {
-            String newFileName =  UUID.randomUUID().toString() ;
+            String newFileName = UUID.randomUUID().toString();
             // 上传图片
             QiniuUtils.upload2Qiniu(file.getBytes(),newFileName);
             String url= "http://rv5kih93z.hn-bkt.clouddn.com//"+ newFileName;

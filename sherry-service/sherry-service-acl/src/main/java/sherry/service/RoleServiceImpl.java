@@ -1,5 +1,6 @@
 package sherry.service;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -7,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import sherry.base.BaseDao;
 import sherry.base.BaseServiceImpl;
+import sherry.dao.AdminRoleDao;
 import sherry.dao.RoleDao;
+import sherry.entity.AdminRole;
 import sherry.entity.Role;
 import sherry.util.CastUtil;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +31,15 @@ import java.util.Map;
 @Service(interfaceClass = RoleService.class)
 public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService {
 
+    /**
+     * @Description 创建对象使用dao层的AdminRoleDao类中的方法,对角色权限进行控制
+     * @Date  2023/5/26
+     * @Param
+     * @return
+     * @Author SHERRY
+     **/
+    @Autowired
+    private AdminRoleDao adminRoleDao;
     @Autowired
     private RoleDao roleDao;
 
@@ -74,5 +88,54 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 
         PageHelper.startPage(pageNum, pageSize);
         return new PageInfo<Role>(roleDao.findPage(filters), 10);
+    }
+
+    /**
+     * 根据用户获取角色数据
+     * @param adminId
+     * @return
+     */
+//@Override
+    public Map<String, Object> findRoleByAdminId(Long adminId) {
+        //查询所有的角色
+        List<Role> allRolesList = roleDao.findAll();
+
+        //拥有的角色id
+        List<Long> existRoleIdList = adminRoleDao.findRoleIdByAdminId(adminId);
+
+        //对角色进行分类
+        List<Role> noAssginRoleList = new ArrayList<>();
+        List<Role> assginRoleList = new ArrayList<>();
+        for (Role role : allRolesList) {
+            //已分配
+            if(existRoleIdList.contains(role.getId())) {
+                assginRoleList.add(role);
+            } else {
+                noAssginRoleList.add(role);
+            }
+        }
+
+        Map<String, Object> roleMap = new HashMap<>();
+        roleMap.put("noAssginRoleList", noAssginRoleList);
+        roleMap.put("assginRoleList", assginRoleList);
+        return roleMap;
+    }
+
+    /**
+     * 分配角色
+     * @param adminId
+     * @param roleIds
+     */
+    @Override
+    public void saveUserRoleRealtionShip(Long adminId, Long[] roleIds) {
+        adminRoleDao.deleteByAdminId(adminId);
+
+        for(Long roleId : roleIds) {
+            if(StringUtils.isEmpty(roleId.toString())) continue;
+            AdminRole userRole = new AdminRole();
+            userRole.setAdminId(adminId);
+            userRole.setRoleId(roleId);
+            adminRoleDao.insert(userRole);
+        }
     }
 }

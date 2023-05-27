@@ -65,6 +65,7 @@
                   <a class="edit" th:attr="data-id=${item.id}">修改</a>
                   <a class="delete" th:attr="data-id=${item.id}">删除</a>
                   <a class="upload" th:attr="data-id=${item.id}">上传头像</a>
+                  <a class="assign" th:attr="data-id=${item.id}">分配角色</a>
                 </td>
               </tr>
               </tbody>
@@ -85,16 +86,20 @@
       opt.openWin('/admin/uploadShow/'+id,'上传头像',580,300);
     });
     $(".create").on("click",function () {
-      opt.openWin('/admin/create','新增',630,430)
+        opt.openWin('/admin/create', '新增', 630, 430)
     });
-    $(".edit").on("click",function () {
-      var id = $(this).attr("data-id");
-      opt.openWin('/admin/edit/' + id,'修改',580,430);
-    });
-    $(".delete").on("click",function(){
-      var id = $(this).attr("data-id");
-      opt.confirm('/admin/delete/'+id);
-    });
+      $(".edit").on("click", function () {
+          var id = $(this).attr("data-id");
+          opt.openWin('/admin/edit/' + id, '修改', 580, 430);
+      });
+      $(".delete").on("click", function () {
+          var id = $(this).attr("data-id");
+          opt.confirm('/admin/delete/' + id);
+      });
+      $(".assign").on("click", function () {
+          var id = $(this).attr("data-id");
+          opt.openWin('/admin/assignShow/' + id, '分配角色', 550, 450)
+      });
   });
 </script>
 </body>
