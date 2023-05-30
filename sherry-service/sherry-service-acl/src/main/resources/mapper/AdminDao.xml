@@ -11,6 +11,11 @@
         where
             is_deleted = 0
     </select>
+    <select id="getAdminByUsername" resultType="admin">
+        select *
+        from acl_admin
+        where username=#{username}
+    </select>
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into acl_admin (id,
                                username,

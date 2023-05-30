@@ -36,9 +36,38 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission> implement
     private RolePermissionDao rolePermissionDao;
 
     @Override
+    public void assignPermission(Long roleId, Long[] permissionIds) {
+        //调用RolePermissionDao中根据角色id删除已分配权限的方法
+        rolePermissionDao.deletePermissionIdsByRoleId(roleId);
+        //遍历所有的权限id
+        for (Long permissionId : permissionIds) {
+            //调用RolePermissionDao中保存权限id和角色id的方法
+            if(permissionId !=null){
+                //调用RolePermissionDao中保存权限id和角色id的方法
+                rolePermissionDao.RoleIdAndPermissionId(roleId, permissionId);
+            }
+        }
+    }
+
+    @Override
+    public List<String> getPermissionCodesByAdminId(Long id) {
+        List<String> permissionCodes=null;
+        if(id==1){
+            //证明是系统管理员,就走if
+            permissionCodes=permissionDao.getAllPermissionCodes();
+        }else{
+            //根据用户id查询权限
+            permissionCodes = permissionDao.getPermissionCodesByAdminId(id);
+
+        }
+        return permissionCodes;
+    }
+
+    @Override
     protected BaseDao<Permission> getEntityDao() {
         return permissionDao;
     }
+
 
     @Override
     public List<Map<String,Object>> findPermissionByRoleId(Long roleId) {
@@ -72,8 +101,9 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission> implement
      */
     @Override
     public void saveRolePermissionRealtionShip(Long roleId, Long[] permissionIds) {
+        //清空
         rolePermissionDao.deleteByRoleId(roleId);
-
+        //循环获取到所有勾选的
         for(Long permissionId : permissionIds) {
             if(StringUtils.isEmpty(permissionId.toString())) continue;
             RolePermission rolePermission = new RolePermission();

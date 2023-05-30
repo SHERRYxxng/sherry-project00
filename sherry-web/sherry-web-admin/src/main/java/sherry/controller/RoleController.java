@@ -2,12 +2,10 @@ package sherry.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import sherry.base.BaseController;
 import sherry.entity.Role;
 import sherry.service.PermissionService;
@@ -89,6 +87,8 @@ public class RoleController extends BaseController {
         return PAGE_SUCCESS;
     }
 
+    @PreAuthorize("hasAnyAuthority('Delete')")//此时只有Delete权限的时候才能调用该方法,系统管理员也没有这个权限,
+    // 因为系统管理员拿到的权限为Role.Delete这个必须要一致才有权限,会报403没有权限拒接了
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         roleService.delete(id);
@@ -111,13 +111,14 @@ public class RoleController extends BaseController {
 
     /**
      * 给角色分配权限
-     *
+     * @RequestParam 可以将表单请求里面的参数都放到传参里面
      * @param roleId
      * @param permissionIds
      * @return
      */
     @PostMapping("/assignPermission")
-    public String assignPermission(Long roleId, Long[] permissionIds) {
+    public String assignPermission(@RequestParam("roleId") Long roleId, Long[] permissionIds) {
+        //调用PermissionService中分配权限的方法
         permissionService.saveRolePermissionRealtionShip(roleId, permissionIds);
         return PAGE_SUCCESS;
     }

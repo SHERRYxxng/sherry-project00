@@ -13,9 +13,9 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <import resource="spring-registry.xml"></import>
-    <!--包扫描-->
+    <!--包扫描 ,这里扫描了配置类实现Spring Security 和控制模块里面的控制器-->
     <context:component-scan base-package="sherry.controller" />
-    <context:component-scan base-package="sherry.service" />
+    <context:component-scan base-package="sherry.config"/>
     <!-- 没有匹配上的url全部按默认方式（就是直接访问）访问，避免拦截静态资源 -->
     <mvc:default-servlet-handler/>
     <!-- 开启mvc注解-->
@@ -73,5 +73,11 @@
     <bean id="templateEngine" class="org.thymeleaf.spring5.SpringTemplateEngine">
         <!--引用视图解析器-->
         <property name="templateResolver" ref="templateResolver"></property>
+<!--        添加Spring Security 标签支持 sec-->
+        <property name="additionalDialects">
+            <set>
+                <bean class="org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect"/>
+            </set>
+        </property>
     </bean>
 </beans>

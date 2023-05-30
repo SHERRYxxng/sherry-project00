@@ -2,6 +2,9 @@ package sherry.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +34,11 @@ import java.util.UUID;
 public class AdminController extends BaseController {
     @Reference
     private RoleService roleService;
-    private final static String PAGE_ASSGIN_SHOW = "admin/assginShow";
+    //注入密码加密器
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    private final static String PAGE_ASSGIN_SHOW = "admin/assignShow";
     private final static String LIST_ACTION = "redirect:/admin";
     private final static String PAGE_INDEX = "admin/index";
     private final static String PAGE_CREATE = "admin/create";
@@ -135,6 +142,9 @@ public class AdminController extends BaseController {
      */
     @PostMapping("/save")
     public String save(Admin admin) {
+        //对Admin对象中的密码进行加密 获取提交的明文密码,再把密码进行加密后set到admin对象中的Password属性中
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        admin.setPassword(encoder.encode(admin.getPassword()));
         //设置默认头像
         admin.setHeadUrl("http://47.93.148.192:8080/group1/M00/03/F0/rBHu8mHqbpSAU0jVAAAgiJmKg0o148.jpg");
         adminService.insert(admin);

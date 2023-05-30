@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans">
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xmlns:security="http://www.springframework.org/schema/security"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans-->
+<!--                            http://www.springframework.org/schema/beans/spring-beans.xsd-->
+<!--                            http://code.alibabatech.com/schema/dubbo-->
+<!--                            http://code.alibabatech.com/schema/dubbo/dubbo.xsd">-->
+<!--&lt;!&ndash;    这里是配置xml的方式实现spring-security&ndash;这里没采用&gt;1-->
+<!--    还有配置类的方式实现spring-security-->
+<!--    <security:http auto-config="true"></security:http>-->
+</beans>

@@ -1,5 +1,6 @@
 package sherry.dao;
 
+import org.apache.ibatis.annotations.Param;
 import sherry.base.BaseDao;
 import sherry.entity.RolePermission;
 
@@ -16,4 +17,9 @@ public interface  RolePermissionDao extends BaseDao<RolePermission> {
     void deleteByRoleId(Long roleId);
 
     List<Long> findPermissionIdListByRoleId(Long roleId);
+
+    void deletePermissionIdsByRoleId(Long roleId);
+
+    void RoleIdAndPermissionId(@Param("roleId") Long roleId,
+                               @Param("permissionId") Long permissionId);
 }

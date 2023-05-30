@@ -5,7 +5,17 @@
 
 
 <mapper namespace="sherry.dao.RolePermissionDao">
-
+<!--    根据角色id删除所有的权限-->
+    <select id="deletePermissionIdsByRoleId" resultType="long">
+        select permission_id
+        from acl_role_permission
+        where role_id=#{roleId} and is_deleted = 0
+    </select>
+<!--        添加角色id和权限id-->
+    <insert id="addRoleIdAndPermission">
+        insert into acl_role_permission(role_id,permission_id)
+        values(#{roleId},#{permissionId})
+    </insert>
     <!-- 用于select查询公用抽取的列 -->
     <sql id="columns">
         select id, role_id, permission_id, create_time, update_time, is_deleted

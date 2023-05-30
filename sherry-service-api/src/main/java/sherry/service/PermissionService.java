@@ -20,7 +20,7 @@ public interface PermissionService extends BaseService<Permission> {
      */
     List<Permission> findAllMenu();
 
-
+    void assignPermission(Long roleId, Long [] permissionIds);
     /**
      * 获取用户菜单权限
      *
@@ -44,4 +44,5 @@ public interface PermissionService extends BaseService<Permission> {
      */
     void saveRolePermissionRealtionShip(Long roleId, Long[] permissionIds);
 
+    List<String> getPermissionCodesByAdminId(Long id);
 }
