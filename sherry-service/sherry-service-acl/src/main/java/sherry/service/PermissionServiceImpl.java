@@ -44,7 +44,7 @@ public class PermissionServiceImpl extends BaseServiceImpl<Permission> implement
             //调用RolePermissionDao中保存权限id和角色id的方法
             if(permissionId !=null){
                 //调用RolePermissionDao中保存权限id和角色id的方法
-                rolePermissionDao.RoleIdAndPermissionId(roleId, permissionId);
+                    rolePermissionDao.RoleIdAndPermissionId(roleId,permissionId);
             }
         }
     }

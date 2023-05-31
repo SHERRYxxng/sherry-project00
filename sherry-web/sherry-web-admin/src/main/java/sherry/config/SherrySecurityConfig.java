@@ -72,15 +72,12 @@ public class SherrySecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.headers().frameOptions().sameOrigin();
 //    }
     /*
-     * @Description 配置认证授权
+     * @Description 配置认证授权,这里面是设置响头,允许一个页面在另一个页面中显示
      * @Date  2023/5/29 11:21
      * @Param [http]
      * @return void
      * @Author SHERRY
      **/
-
-
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -103,7 +100,7 @@ public class SherrySecurityConfig extends WebSecurityConfigurerAdapter {
                .antMatchers("/static/**","/login").permitAll()
                .anyRequest().authenticated();
         /**
-         * @Description 配置登录界面
+         * @Description 配置自定义的登录界面
          * @Date 2023/5/29 11:29
          * @Param [http]
          * @return void
